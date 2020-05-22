@@ -1,0 +1,38 @@
+{
+  "name": "tokenlab-calendar-api",
+  "version": "1.0.0",
+  "description": "O desafio consiste em fazer um sistema web de calendário de eventos com backend e frontend.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "sqlize-init": "sequelize init",
+    "sqlize-model-create": "sequelize model:generate --name Event --attributes idUser:integer,description:string,start:date,end:date",
+    "sqlize-migrate": "sequelize db:migrate",
+    "sqlize-seed-gen": "sequelize seed:generate --name User",
+    "sqlize-seed": "sequelize db:seed:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanzanon/tokenlab-calendar-api.git"
+  },
+  "author": "Ivan Zanon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivanzanon/tokenlab-calendar-api/issues"
+  },
+  "homepage": "https://github.com/ivanzanon/tokenlab-calendar-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.2.1",
+    "pg-hstore": "^2.3.3",
+    "require-dir": "^1.2.0",
+    "sequelize": "^5.21.10",
+    "sequelize-cli": "^5.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
