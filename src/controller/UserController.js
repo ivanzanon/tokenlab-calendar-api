@@ -9,6 +9,13 @@
  const User = require('../../infra/database/models/user');
 
  module.exports = {
+     /**
+      * 
+      * List all Users stored in the database
+      * @description List all Users stored in the database
+      * 
+      * @returns JSon with the users
+      */
     async index(req, res) {
         const users = await User.findAll();
 
@@ -34,7 +41,7 @@
                     id : req.params.id
                 }
             }
-            );
+        );
 
         return res.json(user);
     },
@@ -49,5 +56,6 @@
         );
 
         return res.send();
-    }
+    },
+
 };
