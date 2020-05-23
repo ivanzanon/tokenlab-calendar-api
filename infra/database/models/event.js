@@ -1,6 +1,9 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const Event = sequelize.define('Event', {
+const { Model, DataTypes } = require("Sequelize");
+const sequelize = require('./index');
+
+class Event extends Model {};
+Event.init({
     idUser: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -14,9 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false
     }
-  }, {});
-  Event.associate = function(models) {
-    // associations can be defined here
-  };
-  return Event;
-};
+  }, {sequelize, modelName:"Event"});
+
+  module.exports = Event;
