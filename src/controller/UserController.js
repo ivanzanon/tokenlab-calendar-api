@@ -58,4 +58,21 @@
         return res.send();
     },
 
+    async login(req, res) {
+        const userInfo = req.body;
+
+        const user = await User.findOne(
+            {
+                where: {
+                    name : userInfo.name
+                }
+            });
+
+        if (user.password === userInfo.password) {
+            return res.json({result:1});
+        }
+
+        return res.json({result:0});
+    }
+
 };

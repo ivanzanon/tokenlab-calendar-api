@@ -16,6 +16,7 @@ routes.get('/users/:id', userController.show);
 routes.post('/users', userController.store);
 routes.put('/users/:id', userController.update);
 routes.delete('/users/:id', userController.destroy);
+routes.post('/login', userController.login);
 
 routes.get('/calendar/:id', calendarController.eventsByUser);
 
