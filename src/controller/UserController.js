@@ -6,30 +6,29 @@
  * 
  */
 
- const models = require('../../infra/database/models');
- const userModel = models.User;
+ const User = require('../../infra/database/models/user');
 
  module.exports = {
     async index(req, res) {
-        const users = await userModel.findAll();
+        const users = await User.findAll();
 
         return res.json(users);
     },
 
     async show (req, res) {
-        const user = await userModel.findByPk(req.params.id);
+        const user = await User.findByPk(req.params.id);
 
         return res.json(user);
     },
 
     async store(req, res) {
-        const user = await userModel.create(req.body);
+        const user = await User.create(req.body);
 
         return res.json(user);
     },
 
     async update(req, res) {
-        const user = await userModel.update(req.body, 
+        const user = await User.update(req.body, 
             {where:
                 {
                     id : req.params.id
@@ -41,7 +40,7 @@
     },
 
     async destroy(req, res) {
-        await userModel.destroy(
+        await User.destroy(
             {where:
                 {
                     id : req.params.id

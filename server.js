@@ -7,7 +7,7 @@
  */
 const express = require('express');
 const cors = require('cors');
-const db = require('./infra/database/models');
+const sequelize = require('./infra/database/models');
 
 const routes = require('./src/routes');
 
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 //Testando conexão com o Banco de dados.
-db.sequelize
+sequelize
   .authenticate()
   .then(() => {
     console.log('Conexão com o banco de dados OK!');

@@ -1,15 +1,21 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+
+const { Model, DataTypes } = require("Sequelize");
+const sequelize = require('./index');
+
+class User extends Model{};
+
+User.init({
     name: DataTypes.STRING,
     password: DataTypes.STRING
-  }, {});
-  User.associate = function(models) {
-    User.hasMany(models.Event, {
-      foreignKey: 'idUser',
-      as: 'events',
-      onDelete: 'CASCADE',
-    });
-  };
-  return User;
+  }, {sequelize, modelName:"User"});
+
+User.associate = function(models) {
+  User.hasMany(models.Event, {
+    foreignKey: 'idUser',
+    as: 'events',
+    onDelete: 'CASCADE',
+  });
 };
+
+module.exports = User;

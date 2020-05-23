@@ -1,5 +1,5 @@
 
-const { Event } = require('../../infra/database/models');
+const Event  = require('../../infra/database/models/event');
 
 module.exports = {
     async index(req, res) {
