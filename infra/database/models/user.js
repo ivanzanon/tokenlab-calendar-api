@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     User.hasMany(models.Event, {
-      foreignKey: 'userId',
+      foreignKey: 'idUser',
       as: 'events',
       onDelete: 'CASCADE',
     });

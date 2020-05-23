@@ -23,7 +23,7 @@ db.sequelize
     console.log('Conexão com o banco de dados OK!');
   })
   .catch(err => {
-    console.log('deu erro! na conexão');
+    console.log('Erro na conexão.');
   });
 
 app.use('/api', require("./src/routes"));
