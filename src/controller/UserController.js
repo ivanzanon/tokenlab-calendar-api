@@ -68,11 +68,11 @@
                 }
             });
 
-        if (user.password === userInfo.password) {
-            return res.json({result:1});
+        if (user != null && user.password === userInfo.password) {
+            return res.json({result:1, idUser: user.id});
         }
 
-        return res.json({result:0});
+        return res.json({result:0, idUser: null});
     }
 
 };

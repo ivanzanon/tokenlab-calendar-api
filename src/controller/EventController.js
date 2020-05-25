@@ -33,7 +33,7 @@ module.exports = {
     },
 
     async destroy(req, res) {
-        await Event.destroy(
+        const number = await Event.destroy(
             {where:
                 {
                     id : req.params.id
@@ -41,6 +41,6 @@ module.exports = {
             }
         );
 
-        return res.send();
+        return res.json({number});
     }
 }
