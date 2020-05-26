@@ -8,6 +8,7 @@
     "dev": "nodemon server.js",
     "sqlize-init": "sequelize init",
     "sqlize-model-create": "sequelize model:generate --name Event --attributes idUser:integer,description:string,start:date,end:date",
+    "sqlize-create-migration": "sequelize migration:create --name User",
     "sqlize-migrate": "sequelize db:migrate",
     "sqlize-seed-gen": "sequelize seed:generate --name User",
     "sqlize-seed": "sequelize db:seed:all"
@@ -23,9 +24,11 @@
   },
   "homepage": "https://github.com/ivanzanon/tokenlab-calendar-api#readme",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "require-dir": "^1.2.0",

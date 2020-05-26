@@ -33,3 +33,6 @@ Opção 2: https://calendly.com/christianNogueira/entrevista-tecnica-de-web?mont
 -> Ao finalizar o desafio, responda esta pergunta com o link do repositório (GitHub, Bitbucket etc..) .  
 
 Bom desafio!
+
+
+require('crypto').randomBytes(64).toString('hex')
