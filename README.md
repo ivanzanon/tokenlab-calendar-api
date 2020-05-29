@@ -1,3 +1,39 @@
+
+Tokenlab Calendar API
+
+API for the TokenLab Job Challange.
+
+Developed using:
+    Node ^v12.16.3^
+    Postgres ^PostgreSQL 12.2, compiled by Visual C++ build 1914, 64-bit^
+
+#### How to run
+    Clone this respository
+
+    On the root directoy, type:
+
+    In the project directory, run:
+
+### `npm install`
+
+    Configure yout connection with PostGres on the ./.env file
+
+    Set the 
+### `DEV_DATABASE_URL`
+    with the URL using the following format
+### postgres://USER:PASSWORD@SERVER_ADDRESS:PORT/DATABASE
+
+    Run the Script for migration of the Models:
+
+### `npm run sqlize-migrate`
+
+    Run the script for start server:
+
+### `npm run dev`
+
+
+The following is the challange description:
+
 # tokenlab-calendar-api
 O desafio consiste em fazer um sistema web de calendário de eventos com backend e frontend. 
 

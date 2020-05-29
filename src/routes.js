@@ -12,6 +12,13 @@ const eventController = require('./controller/EventController');
 const calendarController = require('./controller/CalendarController');
 const jwt = require('jsonwebtoken');
 
+/**
+ * @description Verifies if the token on the requisition ins valid and, then, folow to [next] route
+ * 
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 function verifyJWT(req, res, next){
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
@@ -37,7 +44,7 @@ routes.delete('/users/:id', userController.destroy);
 routes.post('/login', userController.login);
 
 routes.get('/calendarlist/:id', verifyJWT, calendarController.eventsByUser);
-routes.post('/calendar/', calendarController.calendarByMonth);
+routes.post('/calendar/', verifyJWT, calendarController.calendarByMonth);
 
 routes.get('/events', verifyJWT, eventController.index);
 routes.get('/events/:id', eventController.show);
