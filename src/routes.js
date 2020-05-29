@@ -10,9 +10,26 @@ const routes = express.Router();
 const userController = require('./controller/UserController');
 const eventController = require('./controller/EventController');
 const calendarController = require('./controller/CalendarController');
+const jwt = require('jsonwebtoken');
+
+function verifyJWT(req, res, next){
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    console.log(token);
+
+    if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+    
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function(err, decoded) {
+      if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+      
+      // se tudo estiver ok, salva no request para uso posterior
+      req.userId = decoded.id;
+      next();
+    });
+  }
 
 routes.get('/users', userController.index);
-routes.get('/users/:id', userController.show);
+routes.get('/users/:id', verifyJWT, userController.show);
 routes.post('/users', userController.store);
 routes.put('/users/:id', userController.update);
 routes.delete('/users/:id', userController.destroy);
@@ -20,7 +37,7 @@ routes.post('/login', userController.login);
 
 routes.get('/calendar/:id', calendarController.eventsByUser);
 
-routes.get('/events', eventController.index);
+routes.get('/events', verifyJWT, eventController.index);
 routes.get('/events/:id', eventController.show);
 routes.post('/events', eventController.store);
 routes.put('/events/:id', eventController.update);
