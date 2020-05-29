@@ -30,12 +30,14 @@ function verifyJWT(req, res, next){
 
 routes.get('/users', userController.index);
 routes.get('/users/:id', verifyJWT, userController.show);
+routes.post('/userExists', userController.userExists);
 routes.post('/users', userController.store);
 routes.put('/users/:id', userController.update);
 routes.delete('/users/:id', userController.destroy);
 routes.post('/login', userController.login);
 
-routes.get('/calendar/:id', calendarController.eventsByUser);
+routes.get('/calendarlist/:id', verifyJWT, calendarController.eventsByUser);
+routes.post('/calendar/', calendarController.calendarByMonth);
 
 routes.get('/events', verifyJWT, eventController.index);
 routes.get('/events/:id', eventController.show);
