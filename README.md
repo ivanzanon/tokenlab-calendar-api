@@ -5,6 +5,7 @@
 API for the TokenLab Job Challange.
 
 Developed using:
+
     Node ^v12.16.3^
     Postgres ^PostgreSQL 12.2, compiled by Visual C++ build 1914, 64-bit^
 
