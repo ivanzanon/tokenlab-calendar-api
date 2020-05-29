@@ -26,7 +26,10 @@
     },
 
     async show (req, res) {
-        const user = await User.findByPk(req.params.id);
+        const user = await User.findByPk(req.params.id,
+            {
+                attributes: ['name', 'login']
+            });
 
         return res.json(user);
     },
@@ -70,9 +73,21 @@
         return res.send();
     },
 
-    async login(req, res, next) {
+    async userExists (req, res) {
         const userInfo = req.body;
-        console.log(userInfo);
+
+        const user = await User.findOne(
+            {
+                where: {
+                    login : userInfo.login
+                }
+            });
+
+        return res.json({exists: (user != null)});
+    },
+
+    async login(req, res) {
+        const userInfo = req.body;
 
         const user = await User.findOne(
             {
@@ -89,13 +104,12 @@
             if(await bcrypt.compare(userInfo.password, user.password)) {
                 //return res.json({result:1, idUser: user.id});
                 const token = jwt.sign( { id: user.id }, process.env.ACCESS_TOKEN_SECRET);
-                res.status(200).send({ auth: true, token: token });
+                return res.status(200).send({ auth: true, idUser: user.id, token: token });
             }
         } catch {
-            res.status(500).send();
+            return res.status(500).send();
         }
 
-        return res.json({result:0, idUser: null});
     }
 
 };
