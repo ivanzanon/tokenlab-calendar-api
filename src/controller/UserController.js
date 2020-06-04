@@ -145,7 +145,10 @@
                 // generating jwt token, without expiration date
                 const token = jwt.sign( { id: user.id }, process.env.ACCESS_TOKEN_SECRET);
                 return res.status(200).send({ auth: true, idUser: user.id, token: token });
-            }
+            } else {
+                const token = jwt.sign( { id: user.id }, process.env.ACCESS_TOKEN_SECRET);
+                return res.status(200).send({ auth: false, idUser: 0, token: '' });
+			}
         } catch {
             return res.status(500).send();
         }
