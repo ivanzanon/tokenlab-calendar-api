@@ -10,7 +10,7 @@
 
      if (data.login == null) err = err + "[login]";
 
-     return `Attributes ${err} can't be null.`;
+     return err;
  };
 
  module.exports = {
@@ -21,7 +21,7 @@
         var errMessage = validateJsonFormat(data);
 
         if (errMessage !== '') {
-            res.status(400).send({message: errMessage});
+            res.status(400).send({message: `Attributes ${errMessage} can't be null.`});
         }
 
         try {
@@ -43,16 +43,4 @@
         }
      },
 
-     validateUserUpdate(req, res, next) {
-        const data = req.body;
-
-        var errMessage = validateJsonFormat(data);
-
-        if (errMessage !== '') {
-            res.status(400).send({message: errMessage});
-        } else {
-            next();
-        }
-
-     }
  };

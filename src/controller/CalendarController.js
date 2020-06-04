@@ -21,6 +21,7 @@ module.exports = {
       * @returns JSon with the events
       */
     async eventsByUser(req, res) {
+        // Validar se ID é nulo
         const events = await Event.findAll({
             where: {
                 idUser: req.params.id
@@ -42,6 +43,7 @@ module.exports = {
       */
     async calendarByMonth(req, res) {
         
+        // Validar se são nulos e se a data é uma data válida.
         const calendarInfo = req.body;
         const date_param = calendarInfo.date;
         const userId = calendarInfo.user;
