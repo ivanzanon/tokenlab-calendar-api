@@ -20,9 +20,13 @@
       * @returns JSon with the users
       */
     async index(req, res) {
-        const users = await User.findAll();
+        try {
+            const users = await User.findAll();
 
-        return res.json(users);
+            return res.json(users);
+        } catch(error) {
+            res.status(500).send({message: error.message})
+        }
     },
 
     /**
@@ -33,12 +37,23 @@
       * @returns JSon with the user
       */
     async show (req, res) {
-        const user = await User.findByPk(req.params.id,
-            {
-                attributes: ['name', 'login']
-            });
+        if (req.params.id == null) {
+            res.status(400).send({message: "Attribute [id] can't be null"});
+        } else {
 
-        return res.json(user);
+            try {
+
+                const user = await User.findByPk(req.params.id,
+                    {
+                        attributes: ['name', 'login']
+                    });
+                    
+            } catch(error) {
+                res.status(500).send({message: error.message});
+            }
+
+            return res.json(user);
+        }
     },
 
     /**
@@ -51,17 +66,21 @@
     async store(req, res) {
         const data = req.body;
 
-        // encrypting password
-        const HashedPassword = await bcrypt.hash(data.password, 10);
+        try {
+            // encrypting password
+            const HashedPassword = await bcrypt.hash(data.password, 10);
 
-        const user = await User.create(
-            {
-                name: data.name,
-                login: data.login,
-                password: HashedPassword
-            });
+            const user = await User.create(
+                {
+                    name: data.name,
+                    login: data.login,
+                    password: HashedPassword
+                });
 
-        return res.json(user);
+            return res.json(user);
+        } catch(error) {
+            res.status(500).send({message: error.message});
+        }
     },
 
     /**
@@ -119,6 +138,7 @@
 
         return res.json({exists: (user != null)});
     },
+
     /**
       * Authenticate an User and gie him authorization
       * @description Authenticate an User and give him a token JWT for Authorization
@@ -146,7 +166,6 @@
                 const token = jwt.sign( { id: user.id }, process.env.ACCESS_TOKEN_SECRET);
                 return res.status(200).send({ auth: true, idUser: user.id, token: token });
             } else {
-                const token = jwt.sign( { id: user.id }, process.env.ACCESS_TOKEN_SECRET);
                 return res.status(200).send({ auth: false, idUser: 0, token: '' });
 			}
         } catch {
