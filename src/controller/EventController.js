@@ -44,6 +44,8 @@ module.exports = {
       * @returns JSon with the stored Event
       */
     async store(req, res) {
+        //validar informações nulas
+        //validar se data inicial é maior que a final
         const event = await Event.create(req.body);
 
         return res.json(event);
