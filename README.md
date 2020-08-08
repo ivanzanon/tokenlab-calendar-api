@@ -62,15 +62,3 @@ Os atributos a seguir não são obrigatórios, porém serão considerados como u
 ▪ Frontend renderizado no lado do cliente;  
 
 Poderá ser utilizada a linguagem e o banco de dados de preferência do desenvolvedor, bem como o uso de frameworks fica à escolha do candidato, porém recomendamos o uso de Angular no frontend. Não será necessário fazer deploy em servidor, apenas apresentação na máquina do candidato ou envio antecipado do código com instrução para rodar a aplicação.  
-
-Orientações: 
--> O prazo para a entrega do projeto é de 1 (uma) semana.  
--> Utilize um dos links abaixo para marcar a entrevista e apresentação do desafio: 
-Opção 1: https://calendly.com/rafael-hiroki/entrevista-tecnica-de-web 
-Opção 2: https://calendly.com/christianNogueira/entrevista-tecnica-de-web?month=2019-09  
--> Ao finalizar o desafio, responda esta pergunta com o link do repositório (GitHub, Bitbucket etc..) .  
-
-Bom desafio!
-
-
-require('crypto').randomBytes(64).toString('hex')
